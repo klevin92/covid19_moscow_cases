@@ -12,6 +12,7 @@ def main():
     infected_total  = np.array([0, 1, 6, 9, 15, 19, 24, 33, 56, 86, 98, 131, 137, 191])
     infected_new    = np.array([0, 1, 5, 4,  6,  4,  5,  9, 23, 30, 12,  33,   6,  54])
     recovered_total = np.array([0, 0, 1, 1,  1,  1,  1,  1,  1,  1,  5,   5,   8,   8])
+    trend           = pow(np.exp(days), 1/4)
 
     fig, ax = plt.subplots()
     plt.grid(True)
@@ -20,6 +21,7 @@ def main():
     ax.xaxis.set_ticks(days)
     ax.yaxis.set_ticks(infected_total)
 
+    plt.plot(days, trend, '--')
     plt.plot(days, infected_total,  'r.-')
     plt.plot(days, recovered_total, 'g.-')
     plt.bar(days, infected_new, width=0.25)
@@ -28,9 +30,10 @@ def main():
     plt.ylabel('$People$')
     plt.title('Moscow COVID-19 cases, '+strftime("%Y-%m-%d", gmtime()))
     plt.legend((
+        'Trend',
         'Infected total',
         'Recovered total',
-        'Infected new',
+        'Infected new'
         ))
     plt.show()
 
