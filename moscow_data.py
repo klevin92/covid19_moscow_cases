@@ -1,10 +1,8 @@
-import os
-import sys
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 from time import gmtime, strftime
+
 
 def get_data(file_obj):
     row_0 = np.genfromtxt(file_obj, delimiter=',', usecols=(0))
@@ -12,6 +10,7 @@ def get_data(file_obj):
     row_2 = np.genfromtxt(file_obj, delimiter=',', usecols=(2))
     row_3 = np.genfromtxt(file_obj, delimiter=',', usecols=(3))
     return row_0, row_1, row_2, row_3
+
 
 def main():
     # Get data from file
@@ -31,7 +30,7 @@ def main():
     plt.plot(days, trend, 'b--')
     plt.plot(days, inf_t, 'r.-')
     plt.plot(days, rec_t, 'g.-')
-    plt.bar( days, inf_new, width=0.25)
+    plt.bar(days, inf_new, width=0.25)
 
     plt.xlabel('$Days$')
     plt.ylabel('$People$')
