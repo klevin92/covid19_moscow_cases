@@ -9,13 +9,13 @@ from time import gmtime, strftime
 
 def main():
     # Real data from mos.ru
-    days = np.array([0, 2, 6, 8, 11, 12, 13, 14, 17, 18, 19,  20,  21,  22])
+    days = np.array([0,2,6,8,11,12,13,14,17,18,19,20,21,22,23])
     infected_total = np.array(
-        [0, 1, 6, 9, 15, 19, 24, 33, 56, 86, 98, 131, 137, 191])
+        [0,1,6,9,15,19,24,33,56,86,98,131,137,191,262])
     infected_new = np.array(
-        [0, 1, 5, 4,  6,  4,  5,  9, 23, 30, 12,  33,   6,  54])
+        [0,1,5,4,6,4,5,9,23,30,12,33,6,54,71])
     recovered_total = np.array(
-        [0, 0, 1, 1,  1,  1,  1,  1,  1,  1,  5,   5,   8,   8])
+        [0,0,1,1,1,1,1,1,1,1,5,5,8,8,9])
     # Approximation
     trend = pow(np.exp(days), 1/4)
 
