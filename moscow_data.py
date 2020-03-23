@@ -41,7 +41,7 @@ def main():
         'Recovered total',
         'Infected new'
     ))
-    plt.show()
+    plt.savefig("msc_covid_cases.png")
 
 
 if __name__ == '__main__':
