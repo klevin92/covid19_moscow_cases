@@ -1,22 +1,23 @@
 import os
 import sys
 
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 from time import gmtime, strftime
 
+def get_data(file_obj):
+    row_0 = np.genfromtxt(file_obj, delimiter=',', usecols=(0))
+    row_1 = np.genfromtxt(file_obj, delimiter=',', usecols=(1))
+    row_2 = np.genfromtxt(file_obj, delimiter=',', usecols=(2))
+    row_3 = np.genfromtxt(file_obj, delimiter=',', usecols=(3))
+    return row_0, row_1, row_2, row_3
 
 def main():
-    # Real data from mos.ru
-    days = np.array([0,2,6,8,11,12,13,14,17,18,19,20,21,22,23])
-    infected_total = np.array(
-        [0,1,6,9,15,19,24,33,56,86,98,131,137,191,262])
-    infected_new = np.array(
-        [0,1,5,4,6,4,5,9,23,30,12,33,6,54,71])
-    recovered_total = np.array(
-        [0,0,1,1,1,1,1,1,1,1,5,5,8,8,9])
-    # Approximation
+    # Get data from file
+    data_file = "data.csv"
+    days, inf_new, inf_t, rec_t = get_data(data_file)
+    # Create approximation
     trend = pow(np.exp(days), 1/4)
 
     # Visualisation
@@ -25,12 +26,12 @@ def main():
 
     ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
     ax.xaxis.set_ticks(days)
-    ax.yaxis.set_ticks(infected_total)
+    ax.yaxis.set_ticks(inf_t)
 
-    plt.plot(days, trend, '--')
-    plt.plot(days, infected_total,  'r.-')
-    plt.plot(days, recovered_total, 'g.-')
-    plt.bar(days, infected_new, width=0.25)
+    plt.plot(days, trend, 'b--')
+    plt.plot(days, inf_t, 'r.-')
+    plt.plot(days, rec_t, 'g.-')
+    plt.bar( days, inf_new, width=0.25)
 
     plt.xlabel('$Days$')
     plt.ylabel('$People$')
@@ -41,7 +42,7 @@ def main():
         'Recovered total',
         'Infected new'
     ))
-    plt.savefig("msc_covid_cases.png")
+    plt.savefig("moscow_covid_cases.png")
 
 
 if __name__ == '__main__':
