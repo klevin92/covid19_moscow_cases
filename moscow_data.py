@@ -25,12 +25,11 @@ def main():
 
     ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
     ax.xaxis.set_ticks(days)
-    ax.yaxis.set_ticks(inf_t)
 
     plt.plot(days, trend, 'b--')
     plt.plot(days, inf_t, 'r.-')
     plt.plot(days, rec_t, 'g.-')
-    plt.bar(days, inf_new, width=0.25)
+    plt.bar(days, inf_new, width=0.45)
 
     plt.xlabel('$Days$')
     plt.ylabel('$People$')
