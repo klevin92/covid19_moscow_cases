@@ -17,7 +17,9 @@ def main():
     data_file = "data.csv"
     days, inf_new, inf_t, rec_t = get_data(data_file)
     # Create approximation
-    trend = pow(np.exp(days), 1/4)
+    add_trend = input("Would you like to add trend on the plot? [y/n]\n")
+    if add_trend == 'y':
+        trend = pow(np.exp(days), 1/4)
 
     # Visualisation
     fig, ax = plt.subplots()
@@ -26,19 +28,20 @@ def main():
     ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
     ax.xaxis.set_ticks(days)
 
-    plt.plot(days, trend, 'b--')
     plt.plot(days, inf_t, 'r.-')
     plt.plot(days, rec_t, 'g.-')
     plt.bar(days, inf_new, width=0.45)
+    if add_trend == 'y':
+        plt.plot(days, trend, 'b--')
 
     plt.xlabel('$Days$')
     plt.ylabel('$People$')
     plt.title('Moscow COVID-19 cases, '+strftime("%Y-%m-%d", gmtime()))
     plt.legend((
-        'Trend',
         'Infected total',
         'Recovered total',
         'Infected new'
+        'Trend',
     ))
     plt.savefig("moscow_covid_cases.png")
 
