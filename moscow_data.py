@@ -29,7 +29,7 @@ def main():
     ax.xaxis.set_ticks(days)
 
     plt.plot(days, inf_t, 'r.-')
-    plt.plot(days, rec_t, 'g.-')
+    plt.plot(days, rec_t, 'm.-')
     plt.bar(days, inf_new, width=0.45)
     if add_trend == 'y':
         plt.plot(days, trend, 'b--')
